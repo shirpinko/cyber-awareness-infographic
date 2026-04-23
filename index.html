@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>עשה ואל תעשה - אבטחת מידע בארגון</title>
+<meta name="description" content="אינפוגרפיקה אינטראקטיבית על אבטחת מידע בארגון - 10 כללי זהב לעובד המודע">
+<style>
+  :root {
+    --navy: #2D3E5F;
+    --navy-light: #4A5D82;
+    --peach: #E8917B;
+    --peach-soft: #F7C8BE;
+    --mint: #A8D5BA;
+    --mint-deep: #6FB089;
+    --lavender: #C7B8EA;
+    --cream: #FAF7F2;
+    --cream-dark: #EFE9DD;
+    --red-soft: #D95D4A;
+    --green-soft: #5E9F7C;
+    --grey-dark: #3A3A3A;
+    --grey-med: #6B6B6B;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Assistant", "Rubik", Arial, sans-serif;
+    background: var(--cream);
+    color: var(--grey-dark);
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  .infographic {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    background: var(--cream);
+  }
+
+  /* ===== HEADER ===== */
+  .top-bar {
+    background: var(--navy);
+    height: 12px;
+    border-radius: 6px 6px 0 0;
+    margin: -40px -24px 40px -24px;
+  }
+
+  .eyebrow {
+    color: var(--peach);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    color: var(--navy);
+    font-size: 56px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+  }
+
+  .subtitle {
+    color: var(--grey-med);
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 16px;
+  }
+
+  .accent-line {
+    width: 80px;
+    height: 5px;
+    background: var(--peach);
+    border-radius: 3px;
+    margin-bottom: 40px;
+  }
+
+  /* ===== HERO STAT ===== */
+  .hero-stat {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 32px 28px;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: visible;
+  }
+  .hero-stat:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(45, 62, 95, 0.25);
+  }
+
+  .hero-stat .text {
+    flex: 1;
+    text-align: right;
+  }
+  .hero-stat .small {
+    color: var(--mint);
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .hero-stat .big {
+    color: white;
+    font-size: 30px;
+    font-weight: 700;
+  }
+
+  .hero-stat .divider {
+    width: 3px;
+    height: 70px;
+    background: var(--peach);
+    border-radius: 2px;
+  }
+
+  .hero-stat .number {
+    color: var(--peach);
+    font-size: 88px;
+    font-weight: 800;
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 180px;
+    text-align: center;
+    direction: ltr;
+  }
+
+  .hero-stat::after {
+    content: "👆 לחץ/י למידע נוסף";
+    position: absolute;
+    bottom: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--grey-med);
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .hero-stat:hover::after {
+    opacity: 1;
+  }
+
+  /* ===== SECTION INTRO ===== */
+  .section-intro {
+    text-align: center;
+    color: var(--navy);
+    font-size: 24px;
+    font-weight: 700;
+    margin: 56px 0 32px 0;
+  }
+
+  /* ===== TWO COLUMNS ===== */
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 48px;
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .col-header {
+    color: white;
+    padding: 16px;
+    border-radius: 14px;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  }
+  .col-header.do { background: var(--green-soft); }
+  .col-header.dont { background: var(--red-soft); }
+
+  .rule-card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px 16px 16px 60px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .rule-card:hover {
+    transform: translateX(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+  .rule-card .num-badge {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    direction: ltr;
+  }
+  .rule-card.do .num-badge { background: var(--green-soft); }
+  .rule-card.dont .num-badge { background: var(--red-soft); }
+
+  .rule-card .title {
+    color: var(--navy);
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .rule-card .desc {
+    color: var(--grey-med);
+    font-size: 12px;
+  }
+
+  .rule-card::after {
+    content: "+";
+    position: absolute;
+    left: 62px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--grey-med);
+    font-size: 18px;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .rule-card:hover::after {
+    opacity: 0.6;
+  }
+
+  /* ===== GOLDEN RULE BANNER ===== */
+  .golden-rule {
+    background: var(--peach);
+    border-radius: 20px;
+    padding: 32px 24px;
+    margin: 48px 0;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(232, 145, 123, 0.3);
+    transition: transform 0.3s ease;
+  }
+  .golden-rule:hover {
+    transform: scale(1.02);
+  }
+  .golden-rule .label {
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+  .golden-rule .words {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .golden-rule .word {
+    color: var(--navy);
+    font-size: 42px;
+    font-weight: 800;
+    transition: transform 0.3s ease;
+  }
+  .golden-rule:hover .word:nth-child(1) { transform: translateY(-8px); }
+  .golden-rule:hover .word:nth-child(2) { transform: translateY(-8px); transition-delay: 0.1s; }
+  .golden-rule:hover .word:nth-child(3) { transform: translateY(-8px); transition-delay: 0.2s; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    border-top: 2px solid var(--navy-light);
+    padding-top: 20px;
+    text-align: center;
+  }
+  .contact {
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .contact a {
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .contact a:hover {
+    border-bottom-color: var(--peach);
+  }
+  .source {
+    color: var(--grey-med);
+    font-size: 11px;
+    margin-bottom: 4px;
+  }
+  .authors {
+    color: var(--navy-light);
+    font-size: 11px;
+    font-weight: 700;
+  }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(45, 62, 95, 0.85);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .modal-overlay.active {
+    display: flex;
+    opacity: 1;
+  }
+
+  .modal {
+    background: var(--cream);
+    border-radius: 20px;
+    max-width: 500px;
+    width: 100%;
+    padding: 32px;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+  }
+  .modal-overlay.active .modal {
+    transform: scale(1);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    background: var(--cream-dark);
+    color: var(--navy);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  .modal-close:hover {
+    background: var(--peach);
+    color: white;
+  }
+
+  .modal-accent {
+    width: 60px;
+    height: 4px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+  .modal-accent.do { background: var(--green-soft); }
+  .modal-accent.dont { background: var(--red-soft); }
+  .modal-accent.golden { background: var(--peach); }
+
+  .modal h2 {
+    color: var(--navy);
+    font-size: 26px;
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .modal-body {
+    color: var(--grey-dark);
+    font-size: 16px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+  }
+
+  .modal-body strong {
+    color: var(--navy);
+  }
+
+  /* ===== FADE-IN ANIMATION ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== MOBILE RESPONSIVE ===== */
+  @media (max-width: 720px) {
+    .infographic { padding: 24px 16px; }
+    .top-bar { margin: -24px -16px 24px -16px; }
+    h1 { font-size: 36px; }
+    .subtitle { font-size: 16px; }
+    .hero-stat {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px 16px;
+    }
+    .hero-stat .divider { width: 60px; height: 3px; }
+    .hero-stat .number { font-size: 64px; }
+    .hero-stat .big { font-size: 22px; }
+    .columns {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .golden-rule .word { font-size: 28px; }
+    .golden-rule .words { gap: 8px; }
+    .section-intro { font-size: 20px; }
+    .modal { padding: 24px 20px; }
+    .modal h2 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="infographic">
+  <div class="top-bar"></div>
+
+  <!-- ==== HEADER ==== -->
+  <div class="fade-in">
+    <div class="eyebrow">קמפיין מודעות לאבטחת מידע</div>
+    <h1>עשה ואל תעשה</h1>
+    <p class="subtitle">10 כללי זהב לאבטחת מידע בארגון</p>
+    <div class="accent-line"></div>
+  </div>
+
+  <!-- ==== HERO STAT ==== -->
+  <div class="hero-stat fade-in" onclick="openModal('stat95')">
+    <div class="text">
+      <div class="small">מהתקיפות המוצלחות על ארגונים</div>
+      <div class="big">מתחילות בטעות אנוש</div>
+    </div>
+    <div class="divider"></div>
+    <div class="number">95%</div>
+  </div>
+
+  <!-- ==== SECTION INTRO ==== -->
+  <div class="section-intro fade-in">הכללים שיגנו על הארגון שלנו</div>
+
+  <!-- ==== TWO COLUMNS ==== -->
+  <div class="columns">
+    <!-- DON'T column (left in LTR, but shows second in RTL) -->
+    <div class="column fade-in">
+      <div class="col-header dont">אל תעשה</div>
+      <div class="rule-card dont" onclick="openModal('dont1')">
+        <div class="num-badge">01</div>
+        <div class="title">אל תלחצו על לינקים ממקור לא מוכר</div>
+        <div class="desc">בדקו שולח ותוכן לפני כל קליק</div>
+      </div>
+      <div class="rule-card dont" onclick="openModal('dont2')">
+        <div class="num-badge">02</div>
+        <div class="title">אל תשתמשו ב-Wi-Fi ציבורי ללא VPN</div>
+        <div class="desc">רשתות פתוחות = כניסה חופשית להאקר</div>
+      </div>
+      <div class="rule-card dont" onclick="openModal('dont3')">
+        <div class="num-badge">03</div>
+        <div class="title">אל תשתפו סיסמאות - גם לא עם עמיתים</div>
+        <div class="desc">ולעולם לא בווטסאפ, מייל או טלפון</div>
+      </div>
+      <div class="rule-card dont" onclick="openModal('dont4')">
+        <div class="num-badge">04</div>
+        <div class="title">אל תחברו דיסק-און-קי לא מזוהה</div>
+        <div class="desc">הוא עשוי להדביק את המחשב מיידית</div>
+      </div>
+      <div class="rule-card dont" onclick="openModal('dont5')">
+        <div class="num-badge">05</div>
+        <div class="title">אל תשאירו מסמכים רגישים פתוחים</div>
+        <div class="desc">בטלפון, במחשב או על השולחן</div>
+      </div>
+    </div>
+
+    <!-- DO column (right in LTR, shows first in RTL) -->
+    <div class="column fade-in">
+      <div class="col-header do">עשה</div>
+      <div class="rule-card do" onclick="openModal('do1')">
+        <div class="num-badge">01</div>
+        <div class="title">דווחו על מייל חשוד למחלקת IT</div>
+        <div class="desc">חשד אחד שווה יותר מתקיפה אחת</div>
+      </div>
+      <div class="rule-card do" onclick="openModal('do2')">
+        <div class="num-badge">02</div>
+        <div class="title">השתמשו באימות דו-שלבי (2FA)</div>
+        <div class="desc">מוסיף שכבת הגנה גם אם הסיסמה דלפה</div>
+      </div>
+      <div class="rule-card do" onclick="openModal('do3')">
+        <div class="num-badge">03</div>
+        <div class="title">עדכנו תוכנות ברגע שמופיעה התראה</div>
+        <div class="desc">עדכונים סוגרים פרצות אבטחה</div>
+      </div>
+      <div class="rule-card do" onclick="openModal('do4')">
+        <div class="num-badge">04</div>
+        <div class="title">נעלו את המסך כשקמים מהשולחן</div>
+        <div class="desc">אפילו לדקה - מספיק זמן לתקיפה</div>
+      </div>
+      <div class="rule-card do" onclick="openModal('do5')">
+        <div class="num-badge">05</div>
+        <div class="title">החליפו סיסמה אחת ל-3 חודשים</div>
+        <div class="desc">עדיפות לסיסמאות הקריטיות</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==== GOLDEN RULE ==== -->
+  <div class="golden-rule fade-in" onclick="openModal('golden')">
+    <div class="label">הכלל הזהב</div>
+    <div class="words">
+      <div class="word">עצור.</div>
+      <div class="word">חשוב.</div>
+      <div class="word">דווח.</div>
+    </div>
+  </div>
+
+  <!-- ==== FOOTER ==== -->
+  <div class="footer fade-in">
+    <div class="contact">
+      יש חשד? דווחו מיידית |
+      <span>שלוחה 911</span> |
+      <a href="mailto:security@company.com">security@company.com</a>
+    </div>
+    <div class="source">מקור: דו״ח סייבר 2022 - כלכליסט | מאיה כהן, מנהלת אבטחת מידע</div>
+    <div class="authors">הוגש ע״י: קרן פינקו וקנין | אלינור סנדורי | רויטל ממרוד</div>
+  </div>
+</div>
+
+<!-- ==== MODAL ==== -->
+<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()" aria-label="סגור">✕</button>
+    <div class="modal-accent" id="modalAccent"></div>
+    <h2 id="modalTitle"></h2>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// Content for each interactive element
+const content = {
+  stat95: {
+    title: "רגע, למה 95%?",
+    accent: "golden",
+    body: `מקור הנתון: דו״ח סייבר 2022 - כלכליסט.
+
+לפי מחקרי IBM ו-Verizon:
+• 7 מתוך 10 תקיפות התחילו ממייל פישינג
+• 82% מהפריצות כרוכות ב"אלמנט אנושי"
+• טעות אחת של עובד = פירצה לארגון כולו
+
+המסר החשוב:
+מערכות ההגנה שלנו חזקות. הפירצה הכי גדולה היא חוסר מודעות.
+כל אחד מאיתנו הוא שומר סף.`
+  },
+
+  do1: {
+    title: "איך לדווח על מייל חשוד?",
+    accent: "do",
+    body: `3 דרכים לדווח:
+
+📞 שלוחה 911 (פנימית)
+📧 security@company.com
+↗️ העבירו את המייל החשוד לכתובת הזו
+
+חשוב: אל תמחקו את המייל לפני הדיווח!
+המחלקה צריכה אותו לחקירה וזיהוי תבניות תקיפה.`
+  },
+
+  do2: {
+    title: "איך מפעילים אימות דו-שלבי?",
+    accent: "do",
+    body: `שלושה שלבים פשוטים:
+
+1. כניסה להגדרות החשבון
+2. בחירת: Security ← Two-Factor Authentication
+3. הוספת מספר טלפון או אפליקציה כמו Google Authenticator
+
+למה זה כל כך חשוב?
+גם אם הסיסמה שלך דלפה, ללא הקוד מהטלפון אף אחד לא יכול להיכנס.
+2FA חוסם 99.9% מניסיונות הפריצה האוטומטיים.`
+  },
+
+  do3: {
+    title: "למה לעדכן חשוב כל כך?",
+    accent: "do",
+    body: `עדכונים = תיקון פרצות אבטחה
+
+כשחברה מגלה באג, היא מוציאה עדכון. האקרים מוציאים כלי ניצול תוך ימים ספורים.
+מחשב לא מעודכן = דלת פתוחה לחלוטין.
+
+הכלל הפשוט:
+✓ התראת עדכון? אל תדחו.
+✓ עדיף להפעיל עדכון אוטומטי.
+✓ גם אפליקציות בטלפון - לא רק המחשב.`
+  },
+
+  do4: {
+    title: "נעילת מסך - קיצורי דרך",
+    accent: "do",
+    body: `Windows:  Win + L
+Mac:  Ctrl + Cmd + Q
+
+שנייה אחת של לחיצה = הגנה מלאה.
+
+מחקר הראה ש-40% מהפירצות הפנימיות קורות כשמישהו יושב מול מחשב פתוח של עובד אחר.
+אל תאפשרי את זה - תנעלי את המסך גם אם יוצאת רק לשתות קפה.`
+  },
+
+  do5: {
+    title: "טיפ מקצועי על סיסמאות",
+    accent: "do",
+    body: `השתמשי במנהל סיסמאות!
+
+כלים מומלצים:
+• 1Password
+• Bitwarden (חינמי)
+• LastPass
+
+למה זה משנה?
+• לא צריך לזכור עשרות סיסמאות
+• יוצר סיסמאות חזקות אוטומטית
+• מסנכרן בין מחשב וטלפון
+• מזהיר אם סיסמה דלפה
+
+סיסמה אחת חזקה למנהל (משפט סיסמה) = הגנה על הכל.`
+  },
+
+  dont1: {
+    title: "איך בודקים לינק לפני לחיצה?",
+    accent: "dont",
+    body: `הטריק הפשוט - 3 שניות שיכולות להציל:
+
+🖱️ העבירי עכבר מעל הלינק (אל תלחצי!)
+👀 תסתכלי בפינה השמאלית-התחתונה של המסך
+    שם תופיע הכתובת האמיתית
+
+⚠️ דוגמה קלאסית לפישינג:
+    כתוב: "bank-israel.co.il"
+    בפועל: "hackers-evil.ru"
+    = פישינג מובהק!
+
+אם הכתובת לא תואמת - אל תלחצי.
+אם אין בטחון - תשלחי ל-IT.`
+  },
+
+  dont2: {
+    title: "למה Wi-Fi ציבורי מסוכן?",
+    accent: "dont",
+    body: `ברשת פתוחה כל אחד יכול לצותת.
+
+תרחיש ריאלי:
+• את יושבת בקפה ומתחברת ל-Wi-Fi.
+• האקר באותו קפה מפעיל כלי ציתות.
+• הוא רואה את כל הנתונים שלך - סיסמאות, מיילים, מסמכים.
+
+מה כן לעשות?
+✓ אם חייבים - השתמשי ב-VPN של הארגון
+✓ השתמשי ב-Hotspot מהטלפון שלך במקום
+✓ אל תכנסי לחשבונות רגישים ברשת פתוחה`
+  },
+
+  dont3: {
+    title: "סיסמה היא אישית",
+    accent: "dont",
+    body: `אפילו מנהל המחלקה לא אמור לדעת אותה.
+
+מה עושים כשצריך לתת גישה למישהו?
+• פותחים הרשאה רשמית במערכת
+• לא משתפים סיסמה
+
+למה זה חשוב?
+• אם הסיסמה שלך שימשה למשהו אסור, את אחראית.
+• שיתוף סיסמה = אובדן שליטה.
+• סיסמאות נשלחות בווטסאפ/מייל נשמרות לנצח.
+
+הכלל: סיסמה יוצאת פעם אחת מהראש - אל המחשב שלך בלבד.`
+  },
+
+  dont4: {
+    title: "הטריק המסוכן של הדיסק-און-קי",
+    accent: "dont",
+    body: `סיפור אמיתי: האקר השאיר 20 דיסקי-און-קי בחניון של חברה.
+17 מתוך 20 חוברו למחשב על ידי עובדים סקרנים.
+המחשב הודבק תוך שניות.
+
+כלל הברזל:
+❌ מצאת דיסק-און-קי? אל תחברי.
+❌ מישהו "נתן לך" דיסק-און-קי? בדקי ב-IT קודם.
+❌ אפילו דיסק-און-קי ישן שלך? עדיף לסרוק.
+
+הסיכון: נוזקה עוברת ברגע שמחברים את המכשיר - לפני שפותחים שום קובץ.`
+  },
+
+  dont5: {
+    title: "מסמכים פתוחים = סכנה",
+    accent: "dont",
+    body: `מה כולל "מסמכים פתוחים"?
+
+📄 נייר על השולחן - פגישה, ויציאה עם טלפון פתוח
+💻 מסך פתוח ללא נעילה - גם לדקה
+📱 מסמך פתוח בטלפון בבית קפה
+
+למה זה מסוכן?
+• סקרנים, מתחרים, או מישהו שצילם בטעות
+• מידע רגיש בענן שלא מוצפן
+• שכחה של מסמך ברכבת / מונית
+
+כלל פשוט:
+שולחן נקי + מסך נעול + מסמכים בכספת דיגיטלית = ארגון מוגן.`
+  },
+
+  golden: {
+    title: "הכלל הזהב - עצור. חשוב. דווח.",
+    accent: "golden",
+    body: `🛑 עצור
+ברגע שמשהו לא נראה סביר - עצרי.
+אל תלחצי. אל תגיבי. אל תעבירי הלאה.
+
+🤔 חשוב
+שאלי את עצמך 3 שאלות:
+1. האם השולח באמת מוכר לי?
+2. האם הדחיפות באמת הגיונית?
+3. האם הבקשה באמת סבירה?
+
+📢 דווח
+אם בספק - דווחי!
+שלוחה 911 | security@company.com
+
+המסר הכי חשוב:
+לדווח על משהו תמים שהתברר כלא-סיכון = מצוין.
+להתעלם ממשהו מסוכן = אסון ארגוני.`
+  }
+};
+
+function openModal(key) {
+  const item = content[key];
+  if (!item) return;
+  document.getElementById('modalTitle').textContent = item.title;
+  document.getElementById('modalBody').textContent = item.body;
+  const accent = document.getElementById('modalAccent');
+  accent.className = 'modal-accent ' + item.accent;
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
+
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
