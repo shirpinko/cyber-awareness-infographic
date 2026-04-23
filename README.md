@@ -4,7 +4,7 @@
 
 ## 🔗 צפייה בלייב
 
-👉 [לחצו כאן לצפייה](https://shirpinkoo.github.io/cyber-awareness-infographic/)
+👉 [לחצו כאן לצפייה](https://shirpinko.github.io/cyber-awareness-infographic/)
 
 ## 🎯 מטרת התוצר
 
