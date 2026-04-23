@@ -373,6 +373,31 @@
     direction: ltr;
   }
 
+  /* Arrows between cards showing RTL flow direction */
+  .rule-word-card:not(:first-child)::before {
+    content: "←";
+    position: absolute;
+    top: 50%;
+    right: calc(100% + 1px);
+    transform: translateY(-50%);
+    color: white;
+    font-size: 28px;
+    font-weight: 300;
+    opacity: 0.85;
+    pointer-events: none;
+    z-index: 3;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    animation: arrow-pulse 2.5s ease-in-out infinite;
+  }
+  .rule-word-card:nth-child(3)::before {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes arrow-pulse {
+    0%, 100% { opacity: 0.6; transform: translateY(-50%) translateX(0); }
+    50% { opacity: 1; transform: translateY(-50%) translateX(-4px); }
+  }
+
   /* ===== FOOTER ===== */
   .footer {
     border-top: 2px solid var(--navy-light);
@@ -520,10 +545,21 @@
       gap: 24px;
     }
     .golden-rule { padding: 32px 20px 28px 20px; }
-    .rule-cards { grid-template-columns: 1fr; gap: 12px; }
+    .rule-cards { grid-template-columns: 1fr; gap: 28px; }
     .rule-word-card { padding: 20px 14px 18px 14px; }
     .rule-word-card .word { font-size: 32px; }
     .rule-word-card .icon { font-size: 36px; }
+    .rule-word-card:not(:first-child)::before {
+      content: "↓";
+      top: -22px;
+      right: 50%;
+      transform: translateX(50%);
+      animation: arrow-pulse-v 2.5s ease-in-out infinite;
+    }
+    @keyframes arrow-pulse-v {
+      0%, 100% { opacity: 0.6; transform: translateX(50%) translateY(0); }
+      50% { opacity: 1; transform: translateX(50%) translateY(4px); }
+    }
     .section-intro { font-size: 20px; }
     .modal { padding: 24px 20px; }
     .modal h2 { font-size: 22px; }
