@@ -251,41 +251,121 @@
 
   /* ===== GOLDEN RULE BANNER ===== */
   .golden-rule {
-    background: var(--peach);
-    border-radius: 20px;
-    padding: 32px 24px;
-    margin: 48px 0;
-    text-align: center;
+    background: linear-gradient(135deg, var(--peach) 0%, #F2A68F 50%, var(--peach-soft) 100%);
+    border-radius: 28px;
+    padding: 44px 32px 40px 32px;
+    margin: 56px 0;
     cursor: pointer;
     position: relative;
-    box-shadow: 0 8px 24px rgba(232, 145, 123, 0.3);
-    transition: transform 0.3s ease;
+    box-shadow: 0 16px 40px rgba(232, 145, 123, 0.35);
+    overflow: hidden;
   }
-  .golden-rule:hover {
-    transform: scale(1.02);
+
+  .golden-rule::before {
+    content: "";
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 220px;
+    height: 220px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    pointer-events: none;
   }
+  .golden-rule::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 260px;
+    height: 260px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+
   .golden-rule .label {
     color: white;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 700;
-    margin-bottom: 16px;
-    letter-spacing: 1px;
+    letter-spacing: 4px;
+    text-align: center;
+    margin-bottom: 32px;
+    position: relative;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
-  .golden-rule .words {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 16px;
+  .golden-rule .label::before,
+  .golden-rule .label::after {
+    content: "";
+    display: inline-block;
+    width: 36px;
+    height: 2px;
+    background: rgba(255,255,255,0.6);
+    margin: 0 14px;
+    vertical-align: middle;
   }
-  .golden-rule .word {
+
+  .rule-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .rule-word-card {
+    background: rgba(255, 255, 255, 0.97);
+    border-radius: 20px;
+    padding: 26px 14px 22px 14px;
+    text-align: center;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+    position: relative;
+  }
+  .golden-rule:hover .rule-word-card {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.18);
+  }
+  .golden-rule:hover .rule-word-card:nth-child(1) { transition-delay: 0s; }
+  .golden-rule:hover .rule-word-card:nth-child(2) { transition-delay: 0.08s; }
+  .golden-rule:hover .rule-word-card:nth-child(3) { transition-delay: 0.16s; }
+
+  .rule-word-card .icon {
+    font-size: 44px;
+    margin-bottom: 10px;
+    display: block;
+    transition: transform 0.4s ease;
+    line-height: 1;
+  }
+  .golden-rule:hover .rule-word-card .icon {
+    transform: scale(1.18) rotate(-3deg);
+  }
+
+  .rule-word-card .word {
     color: var(--navy);
-    font-size: 42px;
+    font-size: 38px;
     font-weight: 800;
-    transition: transform 0.3s ease;
+    margin-bottom: 6px;
+    line-height: 1;
   }
-  .golden-rule:hover .word:nth-child(1) { transform: translateY(-8px); }
-  .golden-rule:hover .word:nth-child(2) { transform: translateY(-8px); transition-delay: 0.1s; }
-  .golden-rule:hover .word:nth-child(3) { transform: translateY(-8px); transition-delay: 0.2s; }
+
+  .rule-word-card .hint {
+    color: var(--grey-med);
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  .rule-word-card .step-num {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--peach);
+    opacity: 0.5;
+    direction: ltr;
+  }
 
   /* ===== FOOTER ===== */
   .footer {
@@ -433,8 +513,11 @@
       grid-template-columns: 1fr;
       gap: 24px;
     }
-    .golden-rule .word { font-size: 28px; }
-    .golden-rule .words { gap: 8px; }
+    .golden-rule { padding: 32px 20px 28px 20px; }
+    .rule-cards { grid-template-columns: 1fr; gap: 12px; }
+    .rule-word-card { padding: 20px 14px 18px 14px; }
+    .rule-word-card .word { font-size: 32px; }
+    .rule-word-card .icon { font-size: 36px; }
     .section-intro { font-size: 20px; }
     .modal { padding: 24px 20px; }
     .modal h2 { font-size: 22px; }
@@ -532,11 +615,26 @@
 
   <!-- ==== GOLDEN RULE ==== -->
   <div class="golden-rule fade-in" onclick="openModal('golden')">
-    <div class="label">הכלל הזהב</div>
-    <div class="words">
-      <div class="word">עצור.</div>
-      <div class="word">חשוב.</div>
-      <div class="word">דווח.</div>
+    <div class="label">כלל הזהב</div>
+    <div class="rule-cards">
+      <div class="rule-word-card">
+        <span class="step-num">01</span>
+        <div class="icon">🛑</div>
+        <div class="word">עצור</div>
+        <div class="hint">קח נשימה - אל תלחץ</div>
+      </div>
+      <div class="rule-word-card">
+        <span class="step-num">02</span>
+        <div class="icon">🤔</div>
+        <div class="word">חשוב</div>
+        <div class="hint">3 שאלות לעצמך</div>
+      </div>
+      <div class="rule-word-card">
+        <span class="step-num">03</span>
+        <div class="icon">📢</div>
+        <div class="word">דווח</div>
+        <div class="hint">שלוחה 911</div>
+      </div>
     </div>
   </div>
 
@@ -737,7 +835,7 @@ Mac:  Ctrl + Cmd + Q
   },
 
   golden: {
-    title: "הכלל הזהב - עצור. חשוב. דווח.",
+    title: "כלל הזהב - עצור. חשוב. דווח.",
     accent: "golden",
     body: `🛑 עצור
 ברגע שמשהו לא נראה סביר - עצרי.
