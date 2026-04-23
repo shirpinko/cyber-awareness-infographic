@@ -321,6 +321,12 @@
     transition: transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
     box-shadow: 0 4px 14px rgba(0,0,0,0.06);
     position: relative;
+    cursor: pointer;
+  }
+  .rule-word-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 36px rgba(0,0,0,0.22) !important;
+    background: white;
   }
   .golden-rule:hover .rule-word-card {
     transform: translateY(-6px);
@@ -614,22 +620,22 @@
   </div>
 
   <!-- ==== GOLDEN RULE ==== -->
-  <div class="golden-rule fade-in" onclick="openModal('golden')">
+  <div class="golden-rule fade-in">
     <div class="label">כלל הזהב</div>
     <div class="rule-cards">
-      <div class="rule-word-card">
+      <div class="rule-word-card" onclick="openModal('goldenStop')">
         <span class="step-num">01</span>
         <div class="icon">🛑</div>
         <div class="word">עצור</div>
         <div class="hint">קח נשימה - אל תלחץ</div>
       </div>
-      <div class="rule-word-card">
+      <div class="rule-word-card" onclick="openModal('goldenThink')">
         <span class="step-num">02</span>
         <div class="icon">🤔</div>
         <div class="word">חשוב</div>
         <div class="hint">3 שאלות לעצמך</div>
       </div>
-      <div class="rule-word-card">
+      <div class="rule-word-card" onclick="openModal('goldenReport')">
         <span class="step-num">03</span>
         <div class="icon">📢</div>
         <div class="word">דווח</div>
@@ -834,21 +840,31 @@ Mac:  Ctrl + Cmd + Q
 שולחן נקי + מסך נעול + מסמכים בכספת דיגיטלית = ארגון מוגן.`
   },
 
-  golden: {
-    title: "כלל הזהב - עצור. חשוב. דווח.",
+  goldenStop: {
+    title: "🛑 עצור",
     accent: "golden",
-    body: `🛑 עצור
-ברגע שמשהו לא נראה סביר - עצרי.
-אל תלחצי. אל תגיבי. אל תעבירי הלאה.
+    body: `ברגע שמשהו לא נראה סביר - עצרי.
 
-🤔 חשוב
-שאלי את עצמך 3 שאלות:
+אל תלחצי.
+אל תגיבי.
+אל תעבירי הלאה.`
+  },
+
+  goldenThink: {
+    title: "🤔 חשוב",
+    accent: "golden",
+    body: `שאלי את עצמך 3 שאלות:
+
 1. האם השולח באמת מוכר לי?
 2. האם הדחיפות באמת הגיונית?
-3. האם הבקשה באמת סבירה?
+3. האם הבקשה באמת סבירה?`
+  },
 
-📢 דווח
-אם בספק - דווחי!
+  goldenReport: {
+    title: "📢 דווח",
+    accent: "golden",
+    body: `אם בספק - דווחי!
+
 שלוחה 911 | security@company.com
 
 המסר הכי חשוב:
