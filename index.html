@@ -373,12 +373,15 @@
     direction: ltr;
   }
 
-  /* Arrows between cards showing RTL flow direction */
+  /* Arrows between cards showing RTL flow direction.
+     In RTL the flow is right-to-left, so arrows point LEFT.
+     We attach the arrow to cards 2 and 3 via ::before, positioned
+     to their RIGHT (the side of the previous card in reading order). */
   .rule-word-card:not(:first-child)::before {
     content: "←";
     position: absolute;
     top: 50%;
-    right: calc(100% + 1px);
+    left: calc(100% + 1px);
     transform: translateY(-50%);
     color: white;
     font-size: 28px;
